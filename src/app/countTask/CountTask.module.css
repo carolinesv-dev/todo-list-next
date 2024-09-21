@@ -1,0 +1,28 @@
+.countTask {
+  max-width: 46.25rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.5rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--gray-400);
+}
+
+.countTask span {
+  background: var(--gray-400);
+  color: var(--gray-200);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.countTaskCreated {
+  color: var(--blue);
+  font-size: 1rem;
+}
+
+.countTaskCompleted {
+  color: var(--purple);
+  font-size: 1rem;
+}

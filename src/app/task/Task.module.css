@@ -1,0 +1,121 @@
+.taskContainer {
+  max-width: 50rem;
+  width: 100%;
+  width: 100vw;
+}
+
+.taskContent {
+  background: var(--gray-500);
+  color: var(--gray-100);
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 4rem;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+.checkbox {
+   opacity: 0;
+   position: absolute;
+}
+
+.customCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--blue-dark);
+  border-radius: 999px;
+  margin-right: 8px;
+  background-color: transparent;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* coloca background com opacity dentro da borda qdo hover */
+.customCheckbox::before { 
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: var(--blue-dark);
+  opacity: 0; 
+  transition: opacity 0.3s; 
+  z-index: 0; /* background fica atrás da borda */
+}
+
+.checkbox:hover + .customCheckbox::before {
+  opacity: 0.2;
+}
+
+.checkbox:checked + .customCheckbox {
+  background-color: var(--purple-dark);
+  border: none;
+  transition: 0.3s;
+}
+
+.checkbox:checked:hover + .customCheckbox {
+  background-color: var(--purple);
+}
+
+.checkbox:checked + .customCheckbox::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  left: 7px;
+  top: 3px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: var(--gray-300); 
+}
+
+.contentButtons {
+  margin-left: auto;
+}
+
+.infoTaskButton {
+  background: none;
+  border: none;
+  color: var(--gray-100);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0 0 0.5rem;
+  transition: 0.3s;
+  line-height: 0;
+}
+
+.infoTaskButton:hover {
+  color: var(--purple-dark);
+}
+
+.removeTaskButton {
+  background: none;
+  border: none;
+  color: var(--gray-100);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0 0 0.5rem;
+  transition: 0.3s;
+  line-height: 0;
+}
+
+.removeTaskButton:hover {
+  color: var(--danger);
+}
