@@ -1,11 +1,12 @@
 'use client'
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import axios from 'axios';
 import { TaskType } from '../(task)/types';
+import taskReducer, { initialState, Action } from '../(taskReducer)/taskReducer';
 
-interface TaskContextType {
+export interface TaskContextType {
   tasks: TaskType[];
-  setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>;
+  dispatch: React.Dispatch<Action>;
   handleTaskAddition: (taskTitle: string) => void;
   toggleTaskCompletion: (taskId: string) => void;
   handleTaskRemove: (taskId: string) => void;
@@ -16,7 +17,7 @@ interface TaskContextType {
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [tasks, dispatch] = useReducer(taskReducer, initialState);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -24,65 +25,59 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!isLoaded) {
         try {
           const { data } = await axios.get('https://jsonplaceholder.cypress.io/todos?_limit=6');
-          setTasks(data);
-          setIsLoaded(true); // Marca como carregado
+          dispatch({ type: 'SET_TASKS', payload: data });
+          setIsLoaded(true);
         } catch (error) {
           console.error("Erro ao buscar tarefas:", error);
         }
       }
     };
     fetchTasks();
-  }, [isLoaded]);
+  }, [isLoaded]); // qdo vazia não carrega auto novamente
 
-const apiId = 1;
+  const apiId = 1;
 
-const handleTaskAddition = (taskTitle: string) => {
-  const newTask = {
-    userId: apiId,
-    id: String(tasks.length + 1),
-    title: taskTitle,
-    completed: false,
+  const handleTaskAddition = (taskTitle: string) => {
+    const newTask: TaskType = {
+      userId: apiId,
+      id: String(tasks.length + 1), 
+      title: taskTitle,
+      completed: false,
+    };
+    dispatch({ type: 'ADD_TASK', payload: newTask });
   };
-  setTasks(newTasks => {
-    return [...newTasks, newTask];
-  });
-};
 
-const toggleTaskCompletion = (taskId: string) => {
-  const newTasks = tasks.map(task =>
-    task.id === taskId ? { ...task, completed: !task.completed } : task
+  const toggleTaskCompletion = (taskId: string) => {
+    dispatch({ type: 'TOGGLE_TASK', payload: taskId });
+  };
+
+  const handleTaskRemove = (taskId: string) => {
+    dispatch({ type: 'REMOVE_TASK', payload: taskId });
+  };
+
+  const countCreatedTasks = () => tasks.length.toString();
+
+  const countCompletedTasks = () => tasks.filter(task => task.completed).length.toString();
+
+  return (
+    <TaskContext.Provider value={{
+      tasks,
+      dispatch,
+      handleTaskAddition,
+      toggleTaskCompletion,
+      handleTaskRemove,
+      countCreatedTasks,
+      countCompletedTasks,
+    }}>
+      {children}
+    </TaskContext.Provider>
   );
-  setTasks(newTasks);
-};
-
-const handleTaskRemove = (taskId: string) => {
-  const newTasks = tasks.filter(task => task.id !== taskId);
-  setTasks(newTasks);
-};
-
-const countCreatedTasks = () => tasks.length.toString();
-
-const countCompletedTasks = () => tasks.filter(task => task.completed).length.toString();
-
-return (
-  <TaskContext.Provider value={{
-    tasks,
-    setTasks,
-    handleTaskAddition,
-    toggleTaskCompletion,
-    handleTaskRemove,
-    countCreatedTasks,
-    countCompletedTasks,
-  }}>
-    {children}
-  </TaskContext.Provider>
-)
 }
 
-export function useTaskContext(): TaskContextType {
+export function useTaskContext() {
   const context = useContext(TaskContext);
   if (!context) {
-    throw new Error('useTaskContext deve ser usado dentro de um TaskProvider')
+    throw new Error('useTaskContext deve ser usado dentro de um TaskProvider');
   }
   return context;
 }
