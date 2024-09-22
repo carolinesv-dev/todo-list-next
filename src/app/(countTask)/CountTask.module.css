@@ -11,9 +11,9 @@
 .countTask span {
   background: var(--gray-400);
   color: var(--gray-200);
-  padding: 2px 8px;
+  padding: 1px 8px;
   border-radius: 999px;
-  margin-left: 0.5rem;
+  margin-left: 0rem;
   font-size: 0.75rem;
 }
 

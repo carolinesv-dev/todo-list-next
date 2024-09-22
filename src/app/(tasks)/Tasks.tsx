@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from "./Tasks.module.css";
-import Task from '../task/Task'
-import { useTaskContext } from '../taskContext/TaskContext';
-import { TaskType } from '../task/types'
+import Task from '../(task)/Task'
+import { useTaskContext } from '../(taskContext)/TaskContext';
+import { TaskType } from '../(task)/types'
 
 export default function Tasks() {
   const { tasks } = useTaskContext();

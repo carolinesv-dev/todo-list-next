@@ -3,8 +3,8 @@ import styles from "./Task.module.css";
 import { GoTrash } from 'react-icons/go';
 import { CgInfo } from 'react-icons/cg';
 import Link from 'next/link';
-import { useTaskContext } from '../taskContext/TaskContext';
-import { TaskProps } from './types'; 
+import { useTaskContext } from '../(taskContext)/TaskContext';
+import { TaskProps } from './types';
 
 export default function Task({ task }: TaskProps) {
   const { toggleTaskCompletion, handleTaskRemove } = useTaskContext();

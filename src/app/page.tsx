@@ -1,12 +1,12 @@
 'use client'
 import React from 'react';
 import styles from "./page.module.css";
-import Header from './header/Header';
-import AddTask from './addTask/AddTask';
-import CountTask from './countTask/CountTask';
-import NoTask from './noTask/NoTask';
-import Tasks from './tasks/Tasks';
-import { TaskProvider, useTaskContext } from './taskContext/TaskContext';
+import Header from './(header)/Header';
+import AddTask from './(addTask)/AddTask';
+import CountTask from './(countTask)/CountTask';
+import NoTask from './(noTask)/NoTask';
+import Tasks from './(tasks)/Tasks';
+import { TaskProvider, useTaskContext } from './(taskContext)/TaskContext';
 
 const MainContent = () => {
   const {

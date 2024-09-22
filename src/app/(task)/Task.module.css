@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 4rem;
+  height: 5rem;
 }
 
 .checkboxContainer {
@@ -25,8 +25,8 @@
 }
 
 .checkbox {
-   opacity: 0;
-   position: absolute;
+  opacity: 0;
+  position: absolute;
 }
 
 .customCheckbox {
@@ -41,7 +41,7 @@
 }
 
 /* coloca background com opacity dentro da borda qdo hover */
-.customCheckbox::before { 
+.customCheckbox::before {
   content: '';
   position: absolute;
   top: 0;
@@ -50,26 +50,27 @@
   bottom: 0;
   border-radius: 999px;
   background: var(--blue-dark);
-  opacity: 0; 
-  transition: opacity 0.3s; 
-  z-index: 0; /* background fica atrás da borda */
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+  /* background fica atrás da borda */
 }
 
-.checkbox:hover + .customCheckbox::before {
+.checkbox:hover+.customCheckbox::before {
   opacity: 0.2;
 }
 
-.checkbox:checked + .customCheckbox {
+.checkbox:checked+.customCheckbox {
   background-color: var(--purple-dark);
   border: none;
   transition: 0.3s;
 }
 
-.checkbox:checked:hover + .customCheckbox {
+.checkbox:checked:hover+.customCheckbox {
   background-color: var(--purple);
 }
 
-.checkbox:checked + .customCheckbox::after {
+.checkbox:checked+.customCheckbox::after {
   content: '';
   position: absolute;
   width: 5px;
@@ -83,11 +84,12 @@
 
 .completed {
   text-decoration: line-through;
-  color: var(--gray-300); 
+  color: var(--gray-300);
 }
 
 .contentButtons {
   margin-left: auto;
+  width: 4rem;
 }
 
 .infoTaskButton {
@@ -118,4 +120,16 @@
 
 .removeTaskButton:hover {
   color: var(--danger);
+}
+
+@media (max-width: 568px) {
+  .taskContent {
+    height: 5.5rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .contentButtons {
+    width: 60vw;
+  }
 }

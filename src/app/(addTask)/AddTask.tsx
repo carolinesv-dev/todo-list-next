@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import styles from "./AddTask.module.css";
-import { useTaskContext } from '../taskContext/TaskContext'
+import { useTaskContext } from '../(taskContext)/TaskContext'
+import Image from 'next/image';
 
 export default function AddTask () {
   const { handleTaskAddition } = useTaskContext()
@@ -26,7 +27,11 @@ export default function AddTask () {
       />
       <button onClick={handleAddTaskClick}>
         Criar
-        <img src="/plus.svg" alt="" />
+        <Image 
+          src="/plus.svg" 
+          alt="" 
+          width={14} 
+          height={14} />
       </button>
     </div>
   )

@@ -1,8 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import { TaskType } from '../task/types';
+import { TaskType } from '../(task)/types';
 
 interface TaskContextType {
   tasks: TaskType[];
@@ -18,31 +17,35 @@ const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
-      if (tasks.length === 0) {
+      if (!isLoaded) {
         try {
-          const { data } = await axios.get('https://jsonplaceholder.cypress.io/todos?_limit=10');
+          const { data } = await axios.get('https://jsonplaceholder.cypress.io/todos?_limit=6');
           setTasks(data);
+          setIsLoaded(true); // Marca como carregado
         } catch (error) {
           console.error("Erro ao buscar tarefas:", error);
         }
       }
-    }
+    };
     fetchTasks();
-  }, [tasks.length]);
+  }, [isLoaded]);
 
 const apiId = 1;
 
 const handleTaskAddition = (taskTitle: string) => {
   const newTask = {
-    userId: Number(apiId),
-    id: String(uuidv4()),
+    userId: apiId,
+    id: String(tasks.length + 1),
     title: taskTitle,
     completed: false,
   };
-  setTasks(newTasks => [...newTasks, newTask]);
+  setTasks(newTasks => {
+    return [...newTasks, newTask];
+  });
 };
 
 const toggleTaskCompletion = (taskId: string) => {

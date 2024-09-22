@@ -1,4 +1,4 @@
-import { TaskProvider } from '@/app/taskContext/TaskContext';
+import { TaskProvider } from '@/app/(taskContext)/TaskContext';
 import { ReactNode } from 'react';
 
 interface TaskDetailsLayoutProps {
