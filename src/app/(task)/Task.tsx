@@ -6,6 +6,12 @@ import Link from 'next/link';
 import { useTaskContext } from '../(taskContext)/TaskContext';
 import { TaskProps } from './types';
 
+
+const capitalizeFirstLetter = (string: string): string => {
+  if (!string) return '';
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
 export default function Task({ task }: TaskProps) {
   const { toggleTaskCompletion, handleTaskRemove } = useTaskContext();
 
@@ -24,7 +30,7 @@ export default function Task({ task }: TaskProps) {
           </label>
 
           <div className={task.completed ? styles.completed : ''}>
-            {task.title}
+            {capitalizeFirstLetter(task.title)}
           </div>
 
           <div className={styles.contentButtons}>
