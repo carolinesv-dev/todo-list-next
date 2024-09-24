@@ -13,16 +13,33 @@
   color: var(--gray-200);
   padding: 1px 8px;
   border-radius: 999px;
-  margin-left: 0rem;
+  margin-left: 0.3rem;
   font-size: 0.75rem;
 }
 
 .countTaskCreated {
   color: var(--blue);
   font-size: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .countTaskCompleted {
   color: var(--purple);
   font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  .countTask p {
+    margin-bottom: 0.4rem;
+  }
+
+  .countTaskCreated,
+  .countTaskCompleted {
+    font-size: 0.875rem;
+    flex-direction: column;
+    text-align: center;
+  }
 }

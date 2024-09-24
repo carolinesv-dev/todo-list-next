@@ -8,8 +8,19 @@
   width: 100%;
   font-size: 1rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 .noTask p {
   margin-bottom: 0.5rem;
+  width: 18.75rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .noTask p {
+    width: 15.625rem;
+    font-size: 0.875rem;
+    width: 65vw;
+  }
 }

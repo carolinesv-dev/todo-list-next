@@ -35,7 +35,7 @@ export default function Task({ task }: TaskProps) {
 
           <div className={styles.contentButtons}>
             <Link href={`/taskDetails/${task.id}`}>
-              <button className={styles.infoTaskButton}>
+              <button className={styles.infoTaskButton} title='Detalhes da tarefa'>
                 <CgInfo />
               </button>
             </Link>
@@ -43,6 +43,7 @@ export default function Task({ task }: TaskProps) {
             <button
               className={styles.removeTaskButton}
               onClick={() => { handleTaskRemove(task.id); }}
+              title='Remover tarefa'
             >
               <GoTrash />
             </button>

@@ -10,14 +10,16 @@ export default function CountTask() {
 
   const createdCount = countCreatedTasks();
   const completedCount = countCompletedTasks();
-  
+
   return (
     <div className={styles.countTask}>
       <div className={styles.countTaskCreated}>
-        <p>Tarefas criadas <span>{createdCount}</span></p>
+        <p>Tarefas criadas </p>
+        <p><span>{createdCount}</span></p>
       </div>
       <div className={styles.countTaskCompleted}>
-        <p>Concluídas <span>{completedCount} de {createdCount}</span></p>
+        <p>Concluídas</p>
+        <p><span>{completedCount} de {createdCount}</span></p>
       </div>
     </div>
   )

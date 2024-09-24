@@ -31,6 +31,10 @@
   outline: 1px solid var(--purple-dark);
 }
 
+.addTask input:hover {
+  cursor: pointer;
+}
+
 .addTask button {
   max-width: 5.625rem;
   background: var(--blue-dark);
@@ -39,11 +43,13 @@
   font-weight: 700;
   cursor: pointer;
   transition: 0.3s;
+  position: relative;
 }
 
 .addTask button:hover {
   background: var(--blue);
 }
+
 
 @media (max-width: 768px) {
   .addTask {

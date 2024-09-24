@@ -24,8 +24,9 @@ export default function AddTask () {
         type="text" 
         value={inputData}
         placeholder="Adicione uma nova tarefa" 
+        title='Adicione uma nova tarefa'
       />
-      <button onClick={handleAddTaskClick}>
+      <button onClick={handleAddTaskClick} title='Criar nova tarefa'>
         Criar
         <Image 
           src="/plus.svg" 
