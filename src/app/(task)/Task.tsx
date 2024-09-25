@@ -14,6 +14,12 @@ const capitalizeFirstLetter = (string: string): string => {
 
 export default function Task({ task }: TaskProps) {
   const { toggleTaskCompletion, handleTaskRemove } = useTaskContext();
+  const [showModal, setShowModal] = React.useState(false)
+
+  const confirmDelete = () => {
+    handleTaskRemove(task.id);
+    setShowModal(false);
+  };
 
   return (
     <div className={styles.taskContainer}>
@@ -42,7 +48,7 @@ export default function Task({ task }: TaskProps) {
 
             <button
               className={styles.removeTaskButton}
-              onClick={() => { handleTaskRemove(task.id); }}
+              onClick={() => setShowModal(true)}
               title='Remover tarefa'
             >
               <GoTrash />
@@ -51,6 +57,24 @@ export default function Task({ task }: TaskProps) {
         </div>
       ) : (
         <p>Tarefa não encontrada</p>
+      )}
+
+      {showModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <p>Tem certeza que deseja excluir essa tarefa?</p>
+            <button
+              className={styles.cancelButton} 
+              onClick={() => setShowModal(false)}>
+                Cancelar
+            </button>
+            <button 
+              className={styles.confirmButton}
+              onClick={confirmDelete}>
+                Confirmar
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

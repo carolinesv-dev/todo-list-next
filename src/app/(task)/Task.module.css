@@ -122,6 +122,47 @@
   color: var(--danger);
 }
 
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: var(--gray-500);
+  padding: 3.125rem;
+  border-radius: 8px;
+  text-align: center;
+  color: var(--gray-100);
+}
+
+.modalContent button {
+  background: var(--gray-200);
+  color: var(--gray-500);
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  border: none;
+}
+
+.modalContent .confirmButton:hover {
+  color: var(--no-danger);
+}
+
+.modalContent .cancelButton:hover {
+  color: var(--danger);
+}
+
 @media (max-width: 568px) {
   .taskContent {
     height: 5.5rem;
